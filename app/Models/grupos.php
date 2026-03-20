@@ -3,8 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class grupo extends Model
+class grupos extends Model
 {
-    //
+    use HasFactory;
+
+    public $fillable = [
+        'nombre',
+        'horario_id'
+    ];
+
+    public function horario()
+    {
+        return $this->belongsTo(horarios::class);
+    }
 }
