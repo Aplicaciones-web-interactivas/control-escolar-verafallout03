@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class horarios extends Model
+class Horario extends Model
 {
     use HasFactory;
 
@@ -23,17 +23,16 @@ class horarios extends Model
 
     public function materia()
     {
-        return $this->belongsTo(materias::class);
+        return $this->belongsTo(Materia::class);
     }
 
     public function usuario()
     {
-        return $this->belongsTo(usuarios::class);
+        return $this->belongsTo(Usuario::class);
     }
 
-    // Relación con grupos
     public function grupos()
     {
-        return $this->hasMany(grupos::class);
+        return $this->hasMany(Grupo::class);
     }
 }

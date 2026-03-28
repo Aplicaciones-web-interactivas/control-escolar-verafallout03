@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class grupos extends Model
+class Grupo extends Model
 {
     use HasFactory;
 
@@ -16,6 +16,6 @@ class grupos extends Model
 
     public function horario()
     {
-        return $this->belongsTo(horarios::class);
+        return $this->belongsTo(Horario::class);
     }
 }
