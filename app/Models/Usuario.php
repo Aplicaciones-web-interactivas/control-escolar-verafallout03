@@ -19,14 +19,6 @@ class Usuario extends Model
         'activo',
     ];
 
-    protected $hidden = [
-        'contrasena',
-    ];
-
-    protected $casts = [
-        'activo' => 'boolean',
-    ];
-
     // Relaciones
     public function horarios()
     {
@@ -36,5 +28,15 @@ class Usuario extends Model
     public function inscripciones()
     {
         return $this->hasMany(Inscripcion::class);
+    }
+
+    public function tareas()
+    {
+        return $this->hasMany(Tarea::class);
+    }
+
+    public function entregas()
+    {
+        return $this->hasMany(Entrega::class);
     }
 }

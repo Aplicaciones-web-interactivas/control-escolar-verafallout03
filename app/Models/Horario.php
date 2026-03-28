@@ -2,33 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Horario extends Model
 {
     use HasFactory;
 
-    public $fillable = [
+    protected $table = 'horarios';
+
+    protected $fillable = [
         'materia_id',
         'usuario_id',
         'horario_inicio',
-        'horario_fin'
+        'horario_fin',
     ];
 
-    public $casts = [
-        'horario_inicio' => 'datetime:H:i',
-        'horario_fin' => 'datetime:H:i',
-    ];
-
+    // Relaciones
     public function materia()
     {
         return $this->belongsTo(Materia::class);
     }
 
-    public function usuario()
+    public function profesor()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 
     public function grupos()
