@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\grupos;
-use App\Models\horarios;
+use App\Models\Grupo;
+use App\Models\Horario;
 use Illuminate\Http\Request;
 
 class gruposController extends Controller
@@ -11,7 +11,7 @@ class gruposController extends Controller
 
     public function index()
     {
-        $grupos = grupos::with('horario')->get();
+        $grupos = Grupo::with('horario')->get();
         return response()->json($grupos);
     }
 
@@ -22,13 +22,13 @@ class gruposController extends Controller
             'horario_id' => 'required|exists:horarios,id'
         ]);
 
-        $grupo = grupos::create($request->all());
+        $grupo = Grupo::create($request->all());
         return response()->json($grupo, 201);
     }
 
     public function show(string $id)
     {
-        $grupo = grupos::with('horario')->findOrFail($id);
+        $grupo = Grupo::with('horario')->findOrFail($id);
         return response()->json($grupo);
     }
 
@@ -39,7 +39,7 @@ class gruposController extends Controller
             'horario_id' => 'sometimes|exists:horarios,id'
         ]);
 
-        $grupo = grupos::findOrFail($id);
+        $grupo = Grupo::findOrFail($id);
         $grupo->update($request->all());
         
         return response()->json($grupo);
@@ -48,7 +48,7 @@ class gruposController extends Controller
 
     public function destroy(string $id)
     {
-        $grupo = grupos::findOrFail($id);
+        $grupo = Grupo::findOrFail($id);
         $grupo->delete();
         
         return response()->json(['message' => 'Grupo eliminado correctamente']);
